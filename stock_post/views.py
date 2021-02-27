@@ -5,14 +5,14 @@ from .models import Post
 from .forms import PostForm
 
 
-def home(request):
+def post(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'stock_main/home.html', {'posts': posts})
+    return render(request, 'stock_post/post.html', {'posts': posts})
 
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'stock_main/post_detail.html', {'post': post})
+    return render(request, 'stock_post/post_detail.html', {'post': post})
 
 
 def post_new(request):
@@ -26,7 +26,7 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'stock_main/post_edit.html', {'form': form})
+    return render(request, 'stock_post/post_edit.html', {'form': form})
 
 
 def post_edit(request, pk):
@@ -41,5 +41,5 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'stock_main/post_edit.html', {'form': form})
+    return render(request, 'stock_post/post_edit.html', {'form': form})
 
