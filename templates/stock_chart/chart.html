@@ -2,4 +2,23 @@
 
 {% block content %}
     차트
+    {{ dataTest }}
+
+    {{ samsung_test }}
+
+    {% for samsung_test in samsung_tests %}
+        <div class="post">
+            <div>1
+            </div>
+            <div class="date">
+                {{ samsung_tests.High|linebreaksbr }}
+            </div>2
+            <div>
+            </div>
+            <div class="date">
+                {{ samsung_test.Open }}
+            </div>
+        </div>
+    {% endfor %}
+
 {% endblock %}
